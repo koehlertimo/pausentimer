@@ -7,12 +7,24 @@
     <title>Pausentimer Fakultät 73</title>
     <script src="main.js"></script>
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
 </head>
 <body>
-    <h1>Pausentimer</h1>
-    <p id="timer">00:00:00</p>
-    <button id="btn-embedded">Embedded</button>
-    <button id="btn-python">Python</button>
-    <button id="btn-java">Java</button>
+    <div class="container">
+        <h1>Pausentimer</h1>
+        <h2 id="isPause"></h2>
+        <p id="timer"></p>
+
+
+        <div class="btn">
+            <button id="btn-embedded" onclick="changeGroup('embedded')">Embedded</button>
+            <button id="btn-python"  onclick="changeGroup('python')">Python</button>
+            <button id="btn-java" onclick="changeGroup('java')">Java</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>by Timo Köhler, Samuel Nitzsche, Robert-Alex Floroiu</p>
+    </footer>
 </body>
 </html>

@@ -17,8 +17,16 @@ var zeiten = {
 }
 
 
-var group = "java";
+var currentTime = new Date();
+var isPause = true;
 
+
+function changeGroup(groupname){
+    localStorage.setItem("group", groupname);
+}
+
+
+// function that converts a hour and minute as a string to unix time 
 function convertStringToDate(time){
     var splittedTime = time.split(':')
     var givenDate = new Date();
@@ -28,27 +36,31 @@ function convertStringToDate(time){
 }
 
 function getNextTime(timesType){
-    var now = new Date();
 
-    for (let i = 0; i < timesType.length; i++) {
-        if(now.getTime() <= convertStringToDate(timesType[i][0])){
-            return convertStringToDate(timesType[i][0]);
-        }
+    if(convertStringToDate("16:15") < currentTime.getTime()){
+        return convertStringToDate("16:15");
     }
 
+    for (let i = 0; i < timesType.length; i++) {
+        if(currentTime.getTime() <= convertStringToDate(timesType[i][0])){
+            isPause = false;
+            return convertStringToDate(timesType[i][0]);
+        } else if(currentTime.getTime() <= convertStringToDate(timesType[i][1])){
+            isPause = true;
+            return convertStringToDate(timesType[i][1]); 
+        }
+    }
 }
 
 
-var countDownDate = getNextTime(zeiten[group]);
+
+var countDownDate = getNextTime(zeiten[localStorage.getItem("group")]);
 
 // Update the count down every 1 second
 var countDownInterval = setInterval(function() {
 
-    // Get today's date and time
-    var now = new Date();
-
-    // Find the distance between now and the count down date
-    var distance = countDownDate - now.getTime();
+    // Find the distance between the currentTime and the count down date
+    var distance = countDownDate - currentTime.getTime();
 
     // Time calculations for days, hours, minutes and seconds
     var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
@@ -59,9 +71,26 @@ var countDownInterval = setInterval(function() {
     document.getElementById("timer").innerHTML = hours + "h "
     + minutes + "m " + seconds + "s ";
 
-    // If the count down is finished, write some text
+    if(isPause){
+        document.getElementById("isPause").innerHTML = "Pausenzeit:";
+    }else{
+        document.getElementById("isPause").innerHTML = "Arbeitszeit:"; 
+    }
+
+    //Check if its weekend
+    if(currentTime.getDay == 5 || currentTime.GetDay == 6){
+        document.getElementById("isPause").style.display = "none";
+        document.getElementById("timer").innerHTML = "Schönes Wochenende!";
+    }
+
+    //Check if work time is over
+    if(convertStringToDate("16:15") < currentTime.getTime()){
+        document.getElementById("timer").innerHTML = "Schönen Feierabend!";
+        document.getElementById("isPause").style.display = "none";
+    }
+
     if (distance < 0) {
-        countDownDate = getNextTime(zeiten[group]);
+        countDownDate = getNextTime(zeiten[localStorage.getItem("group")]);
     }
 }, 1000);
 
