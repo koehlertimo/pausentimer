@@ -70,6 +70,10 @@ var countDownInterval = setInterval(function() {
         document.getElementById("isPause").style.display = "unset"; 
         document.getElementById("isPause").innerHTML = "Arbeit beginnt in:";
         countDownDate = convertStringToDate("8:30");
+    } else if(isPause){
+        document.getElementById("isPause").innerHTML = "Pausenzeit:";
+    }else{
+        document.getElementById("isPause").innerHTML = "Arbeitszeit:"; 
     }
 
     // Find the distance between the currentTime and the count down date
@@ -84,11 +88,6 @@ var countDownInterval = setInterval(function() {
     document.getElementById("timer").innerHTML = hours + "h "
     + minutes + "m " + seconds + "s ";
 
-    if(isPause){
-        document.getElementById("isPause").innerHTML = "Pausenzeit:";
-    }else{
-        document.getElementById("isPause").innerHTML = "Arbeitszeit:"; 
-    }
 
     //Check if its weekend
     if(currentTime.getDay == 5 || currentTime.GetDay == 6){
