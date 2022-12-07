@@ -18,11 +18,13 @@ var zeiten = {
 
 
 var currentTime = new Date();
-var isPause = true;
+var isPause = false;
 
 
 function changeGroup(groupname){
     localStorage.setItem("group", groupname);
+    countDownDate = getNextTime(zeiten[localStorage.getItem("group")]);
+    document.getElementById("group").innerHTML = groupname;
 }
 
 
@@ -32,15 +34,16 @@ function convertStringToDate(time){
     var givenDate = new Date();
     givenDate.setHours(splittedTime[0]);
     givenDate.setMinutes(splittedTime[1]);
+    givenDate.setSeconds(0);
     return givenDate.getTime();
 }
 
 function getNextTime(timesType){
 
-    if(convertStringToDate("16:15") < currentTime.getTime()){
+    if(convertStringToDate(timesType[2][1]) < currentTime.getTime()){
+        isPause = false;
         return convertStringToDate("16:15");
-    }
-
+}
     for (let i = 0; i < timesType.length; i++) {
         if(currentTime.getTime() <= convertStringToDate(timesType[i][0])){
             isPause = false;
@@ -50,6 +53,8 @@ function getNextTime(timesType){
             return convertStringToDate(timesType[i][1]); 
         }
     }
+    
+
 }
 
 
@@ -58,6 +63,14 @@ var countDownDate = getNextTime(zeiten[localStorage.getItem("group")]);
 
 // Update the count down every 1 second
 var countDownInterval = setInterval(function() {
+
+    currentTime = new Date();
+
+    if(convertStringToDate("8:30") > currentTime.getTime()){
+        document.getElementById("isPause").style.display = "unset"; 
+        document.getElementById("isPause").innerHTML = "Arbeit beginnt in:";
+        countDownDate = convertStringToDate("8:30");
+    }
 
     // Find the distance between the currentTime and the count down date
     var distance = countDownDate - currentTime.getTime();
@@ -79,15 +92,19 @@ var countDownInterval = setInterval(function() {
 
     //Check if its weekend
     if(currentTime.getDay == 5 || currentTime.GetDay == 6){
-        document.getElementById("isPause").style.display = "none";
         document.getElementById("timer").innerHTML = "Schönes Wochenende!";
+        document.getElementById("isPause").style.display = "none";
+        document.getElementById("group").style.display = "none";
     }
 
     //Check if work time is over
     if(convertStringToDate("16:15") < currentTime.getTime()){
         document.getElementById("timer").innerHTML = "Schönen Feierabend!";
         document.getElementById("isPause").style.display = "none";
+        document.getElementById("group").style.display = "none";
     }
+
+    
 
     if (distance < 0) {
         countDownDate = getNextTime(zeiten[localStorage.getItem("group")]);

@@ -4,23 +4,24 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pausentimer Fakultät 73</title>
+    <title>Pausentimer- Fakultät 73</title>
     <script src="main.js"></script>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="vw-logo.png" type="image/x-icon">
 </head>
 <body>
     <div class="container">
+        <img src="vw-logo.png" width="125px" id="logo" alt="Volkswagen Logo">
         <h1>Pausentimer</h1>
         <h2 id="isPause"></h2>
         <p id="timer"></p>
+        <p id="group"></p>
 
-
-        <div class="btn">
-            <button id="btn-embedded" onclick="changeGroup('embedded')">Embedded</button>
-            <button id="btn-python"  onclick="changeGroup('python')">Python</button>
-            <button id="btn-java" onclick="changeGroup('java')">Java</button>
-        </div>
+        
+        <button id="java" onclick="changeGroup('java')">Java</button>
+        <button id="embedded" onclick="changeGroup('embedded')">Embedded</button>
+        <button id="python"  onclick="changeGroup('python')">Python</button>
     </div>
 
     <footer>
