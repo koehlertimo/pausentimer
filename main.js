@@ -16,17 +16,23 @@ var zeiten = {
         ] 
 }
 
+initializeComponents();
 
 var currentTime = new Date();
 var isPause = false;
+var countDownDate = getNextTime(zeiten[localStorage.getItem("group")]);
 
+function initializeComponents() {
+    if (localStorage.getItem('group') == undefined) {
+        localStorage.setItem('group', 'java');
+    }
+}
 
 function changeGroup(groupname){
     localStorage.setItem("group", groupname);
     countDownDate = getNextTime(zeiten[localStorage.getItem("group")]);
     document.getElementById("group").innerHTML = groupname;
 }
-
 
 // function that converts a hour and minute as a string to unix time 
 function convertStringToDate(time){
@@ -56,10 +62,6 @@ function getNextTime(timesType){
     
 
 }
-
-
-
-var countDownDate = getNextTime(zeiten[localStorage.getItem("group")]);
 
 // Update the count down every 1 second
 var countDownInterval = setInterval(function() {
@@ -109,66 +111,3 @@ var countDownInterval = setInterval(function() {
         countDownDate = getNextTime(zeiten[localStorage.getItem("group")]);
     }
 }, 1000);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-var zeiten = {
-    java : {
-        arbeit : [
-            ["8:30", "10:00"],
-            ["10:15", "12:00"], 
-            ["12:45", "14:30"], 
-            ["14:45", "16:15"]
-        ],
-        pausen : [
-            ["10:00", "10:15"],
-            ["12:00", "12:45"], 
-            ["14:30", "14:45"]
-        ] 
-    },
-    python : {
-        arbeit : [
-            ["8:30", "10:00"],
-            ["10:15", "11:45"], 
-            ["12:30", "14:00"], 
-            ["14:15", "16:15"]
-        ],
-        pausen : [
-            ["10:00", "10:15"],
-            ["11:45", "12:30"], 
-            ["14:00", "14:15"]
-        ] 
-    },
-    embedded : {
-        arbeit : [
-            ["8:30", "10:00"],
-            ["10:15", "12:15"], 
-            ["13:00", "14:30"], 
-            ["14:45", "16:15"]
-        ],
-        pausen : [
-            ["10:00", "10:15"],
-            ["12:15", "13:00"], 
-            ["14:30", "14:45"]
-        ] 
-    }
-}
-*/
-
