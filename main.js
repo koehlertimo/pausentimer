@@ -26,7 +26,7 @@ function initializeComponents() {
     if (localStorage.getItem('group') == undefined) {
         localStorage.setItem('group', 'java');
     }
-    document.getElementById(localStorage.getItem('group')).classList.add('highlight');
+    highlight(localStorage.getItem('group'));
 }
 
 function highlight(groupname){
