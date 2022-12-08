@@ -26,12 +26,22 @@ function initializeComponents() {
     if (localStorage.getItem('group') == undefined) {
         localStorage.setItem('group', 'java');
     }
+    document.getElementById(localStorage.getItem('group')).classList.add('highlight');
+}
+
+function highlight(groupname){
+    var elems = document.getElementsByClassName('highlight');
+    for (var i = 0; i < elems.length;i++) {
+        elems[i].className = '';
+    }
+    document.getElementById(groupname).classList.add('highlight');
 }
 
 function changeGroup(groupname) {
     localStorage.setItem("group", groupname);
     countDown = getNextTime(zeiten[localStorage.getItem("group")]);
     document.getElementById("group").innerHTML = groupname;
+    highlight(groupname);
 }
 
 // function that converts a hour and minute as a string to unix time 

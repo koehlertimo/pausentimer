@@ -62,6 +62,10 @@ button:hover{
     background-color: #00264C;
 }
 
+button.highlight {
+    box-shadow: 0px 0px 15px white;
+}
+
 #group {
     font-size: 27px;
     margin-bottom: 50px;
