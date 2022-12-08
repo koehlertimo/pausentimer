@@ -3,8 +3,12 @@ html {
     height: 100%;
 }
 
+:root {
+    --dark-blue: #00264C;
+}
+
 body {
-    background-color: #00264C;
+    background-color: var(--dark-blue);
     color: white;
     font-family: 'Montserrat', sans-serif;
     text-align: center;
@@ -12,6 +16,7 @@ body {
     display: flex;
     justify-content: center;
     flex-direction: column;
+    margin:0px;
 }
 
 h1{
@@ -45,7 +50,7 @@ button{
     font-size: 20px;
     border: none; 
     background-color: white;
-    color: #00264C;
+    color: var(--dark-blue);
     text-align: center;
     text-decoration: none;
     padding: 15px 32px;
@@ -59,7 +64,7 @@ button:not(.highlight):hover{
     color: white; 
     padding: 13px 30px;
     border: 2px solid white;
-    background-color: #00264C;
+    background-color: var(--dark-blue);
     cursor: pointer;
 }
 
