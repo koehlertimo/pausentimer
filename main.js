@@ -16,9 +16,17 @@ var zeiten = {
         ] 
 }
 
+initializeComponents();
+
 var currentTime = new Date();
 var isPause = false;
 var countDownDate = getNextTime(zeiten[localStorage.getItem("group")]);
+
+function initializeComponents() {
+    if (localStorage.getItem('group') == undefined) {
+        localStorage.setItem('group', 'java');
+    }
+}
 
 function changeGroup(groupname){
     localStorage.setItem("group", groupname);
