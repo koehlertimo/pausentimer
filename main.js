@@ -77,7 +77,6 @@ function getNextTime(timesType) {
 }
 
 function activateSound() {
-
     var activateBtn = document.getElementById('activateSound');
     activateBtn.style.opacity = 0;
 }
