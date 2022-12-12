@@ -8,7 +8,7 @@ body {
     color: white;
     font-family: 'Montserrat', sans-serif;
     text-align: center;
-    height: 70%;
+    height: 90%;
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -72,6 +72,11 @@ button.highlight {
     margin-bottom: 50px;
     font-weight: 600;
     text-transform: uppercase;
+}
+
+#activateSound {
+    transition: all 0.5s ease-in-out;
+    margin-top: 5vw;
 }
 
 footer {
