@@ -1,4 +1,4 @@
-var zeiten = {
+var times = {
     java: [
         ["10:00", "10:15"],
         ["12:00", "12:45"],
@@ -20,7 +20,7 @@ initializeComponents();
 
 var currentTime = new Date();
 var isPause = false;
-var countDown = getNextTime(zeiten[localStorage.getItem("group")]);
+var countDown = getNextTime(times[localStorage.getItem("group")]);
 
 function initializeComponents() {
     if (localStorage.getItem('group') == undefined) {
@@ -29,19 +29,19 @@ function initializeComponents() {
     highlight(localStorage.getItem('group'));
 }
 
-function highlight(groupname) {
-    var elems = document.getElementsByClassName('highlight');
-    for (var i = 0; i < elems.length; i++) {
-        elems[i].className = '';
+function highlight(groupName) {
+    var elements = document.getElementsByClassName('highlight');
+    for (var i = 0; i < elements.length; i++) {
+        elements[i].className = '';
     }
-    document.getElementById(groupname).classList.add('highlight');
+    document.getElementById(groupName).classList.add('highlight');
 }
 
-function changeGroup(groupname) {
-    localStorage.setItem("group", groupname);
-    countDown = getNextTime(zeiten[localStorage.getItem("group")]);
-    document.getElementById("group").innerHTML = groupname;
-    highlight(groupname);
+function changeGroup(groupName) {
+    localStorage.setItem("group", groupName);
+    countDown = getNextTime(times[localStorage.getItem("group")]);
+    document.getElementById("group").innerHTML = groupName;
+    highlight(groupName);
 }
 
 // function that converts a hour and minute as a string to unix time 
@@ -139,7 +139,7 @@ var countDownInterval = setInterval(function () {
     }
 
     if (distance < 0) {
-        countDown = getNextTime(zeiten[localStorage.getItem("group")]);
+        countDown = getNextTime(times[localStorage.getItem("group")]);
         playSound()
     }
 }, 1000);
