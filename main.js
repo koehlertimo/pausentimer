@@ -29,9 +29,9 @@ function initializeComponents() {
     highlight(localStorage.getItem('group'));
 }
 
-function highlight(groupname){
+function highlight(groupname) {
     var elems = document.getElementsByClassName('highlight');
-    for (var i = 0; i < elems.length;i++) {
+    for (var i = 0; i < elems.length; i++) {
         elems[i].className = '';
     }
     document.getElementById(groupname).classList.add('highlight');
@@ -76,6 +76,24 @@ function getNextTime(timesType) {
     }
 }
 
+function activateSound() {
+
+    var activateBtn = document.getElementById('activateSound');
+    activateBtn.style.opacity = 0;
+}
+
+function playSound() {
+    var notification = document.getElementById('notification');
+    notification.play()
+    var i = 1;
+    notification.onended = function () {
+        if (i < 2) {
+            notification.play();
+        }
+        i++;
+    };
+}
+
 // Update the count down every 1 second
 var countDownInterval = setInterval(function () {
 
@@ -84,8 +102,8 @@ var countDownInterval = setInterval(function () {
     if (convertStringToDate("8:30") > currentTime.getTime()) {
         document.getElementById("isPause").style.display = "unset";
         document.getElementById("isPause").innerHTML = "Arbeit beginnt in:";
-        countDown = { 
-            time: convertStringToDate("8:30"), 
+        countDown = {
+            time: convertStringToDate("8:30"),
             isPause: false
         };
     } else if (isPause) {
@@ -123,5 +141,6 @@ var countDownInterval = setInterval(function () {
 
     if (distance < 0) {
         countDown = getNextTime(zeiten[localStorage.getItem("group")]);
+        playSound()
     }
 }, 1000);

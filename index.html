@@ -10,6 +10,7 @@
     <link rel="shortcut icon" href="vw-logo.png" type="image/x-icon">
 </head>
 <body>
+    <audio id="notification" src="Bulletin.mp3"></audio>
     <div class="container">
         <img src="vw-logo.png" width="125px" id="logo" alt="Volkswagen Logo">
         <h1>Pausentimer</h1>
@@ -18,9 +19,14 @@
         <p id="group"></p>
 
         
-        <button id="java" onclick="changeGroup('java')">Java</button>
-        <button id="embedded" onclick="changeGroup('embedded')">Embedded</button>
-        <button id="python"  onclick="changeGroup('python')">Python</button>
+        <button id="java" type="button" onclick="changeGroup=('java')">Java</button>
+        <button id="embedded" type="button" onclick="changeGroup('embedded')">Embedded</button>
+        <button id="python" type="button" onclick="changeGroup('python')">Python</button>
+        
+    </div>
+
+    <div>
+        <button id="activateSound" type="button" onclick="activateSound()">Drück mich um den Ton zu aktivieren</button>
     </div>
 
     <footer>
