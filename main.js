@@ -40,7 +40,6 @@ function highlight(groupName) {
 function changeGroup(groupName) {
     localStorage.setItem("group", groupName);
     countDown = getNextTime(times[localStorage.getItem("group")]);
-    document.getElementById("group").innerHTML = groupName;
     highlight(groupName);
 }
 
